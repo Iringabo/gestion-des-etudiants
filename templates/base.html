@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>list etudiant</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+  </head>
+  <header class="header">
+    <input type="checkbox" name id="btn" />
+    <h2>Gestions des Etudiant</h2>
+    <nav>
+      <ul>
+        <li>
+          <a href="{% url 'app:acceuil' %}">Accueil</a>
+        </li>
+        {% if request.user.is_professeur %}
+
+        <li>
+          <a href="{% url 'app:detail' %}">ecart type</a>
+        </li>
+
+        <li>
+          <label for="btn">
+            <span class="btn">Ajouter</span>
+          </label>
+        </li>
+
+        {% endif %} {% if request.user.is_authenticated %}
+        <li>
+          <a href="{% url 'account_logout' %}">Logout</a>
+        </li>
+        {% endif %}
+      </ul>
+    </nav>
+    {% if request.user.is_professeur %}
+    <div class="ajouter">
+      <ul>
+        <li>
+          <a href="{% url 'app:etudiant' %}">Etudiant</a>
+        </li>
+        <li>
+          <a href="{% url 'app:cours' %}">cours</a>
+        </li>
+        <li>
+          <a href="{% url 'app:note' %}">note</a>
+        </li>
+      </ul>
+    </div>
+    {% endif %}
+  </header>
+  <body>
+    {% block content %} {% endblock %}
+  </body>
+</html>

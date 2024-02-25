@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1>supprime la note</h1>
+<form method="POST" class="formE">
+    {% csrf_token%}
+    <p> vous etes sur de vouloir supprime cette note "{{ note }}" ?</p>
+
+    <input type="submit" class="btn btn-delete" value="oui, supprime">
+</form>
+{% endblock %}

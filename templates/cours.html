@@ -1,0 +1,20 @@
+{% extends "base.html" %} {% block content%}
+<div class="x">
+  <form method="post" class="formE">
+    {% csrf_token %}
+    <h1>Formulaire Cours</h1>
+    <div class="content">
+      <div class="flex">
+        <label for="id_NomCours">Nom du cous:</label>
+        {{form.NomCours}}
+      </div>
+      <div class="flex">
+        <label for="id_Volume ">Volume du cours:</label>
+        {{form.Volume }}
+      </div>
+    </div>
+
+    <input type="submit" class="send" value="Envoyer" />
+  </form>
+</div>
+{% endblock %}

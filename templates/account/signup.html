@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<div class="x">
+  <form method="post" class="formE" style="width: 400px">
+    {% csrf_token %}
+    <h1>Inscription</h1>
+    {{form.as_p}}
+
+    <input
+      type="submit"
+      style="width: 80%; padding: 10px; font-size: 1rem"
+      value="incrivez-vous"
+    />
+    <div class="flex">
+      <a style="color: black; cursor: pointer" href="{% url 'account_login'%}"
+        >j'ai deja un compte</a
+      >
+      {% if form.errors %}
+      <p class="text-primary_red">{{ form.non_field_errors }}</p>
+      {% endif %}
+    </div>
+  </form>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+<form method="get" class="search">
+  <input type="text" name="q" placeholder="Search..." />
+  <input type="submit" value="Search" />
+</form>
+
+<table>
+  <tr>
+    <th>Nom de l'étudiant</th>
+    <th>Prénom de l'étudiant</th>
+    <th>Matricule de l'étudiant</th>
+    <th>cours</th>
+    <th>note</th>
+    <th>date d'attribution</th>
+  </tr>
+  {% for i in form %}
+  <tr>
+    <td>{{ i.etudiant.nom }}</td
+    <td>{{ i.etudiant.prenom }}</td>
+    <td>{{ i.etudiant.Matricule }}</td>
+    <td>{{i.cours}}</td>
+    <td>>
+      {{i.note}} {% if request.user.is_professeur %}
+      <a href="{% url 'app:noteu' slug=i.slug  %}">modifie</a>
+      <a href="{% url 'app:noted' slug=i.slug  %}">supprime</a>
+      {% endif %}
+    </td>
+    <td>{{i.createdOn}}</td>
+  </tr>
+  {% endfor %}
+</table>
+<button onclick="location.href='{% url 'app:exporter_excel' %}'">
+  Exporter en Excel
+</button>
+
+<div class="pagination">
+  <span class="step-links">
+    {% if page_obj.has_previous %}
+    <a href="?page=1">&laquo; first</a>
+    <a href="?page={{ page_obj.previous_page_number }}">previous</a>
+    {% endif %}
+
+    <span class="current">
+      Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+    </span>
+
+    {% if page_obj.has_next %}
+    <a href="?page={{ page_obj.next_page_number }}">next</a>
+    <a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a>
+    {% endif %}
+  </span>
+</div>

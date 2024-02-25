@@ -1,0 +1,24 @@
+{% extends 'base.html'%} {%block content%}
+<div class="ecart">
+  <div class="type">
+    <form method="post" class="form">
+      {% csrf_token %}
+      <select name="etudiant">
+        {% for etudiant in etudiants %}
+        <option value="{{ etudiant.CodeEtudiant }}">
+          {{ etudiant.NomEtudiant }} {{ etudiant.PrenomEtudiant }}
+        </option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Afficher" />
+    </form>
+
+    {% if selected_etudiant %}
+    <p>
+      L'écart type des notes de {{ selected_etudiant.NomEtudiant }}
+      {{selected_etudiant.PrenomEtudiant }} est :
+    </p>
+    <span> {{selected_etudiant.ecart_type}} </span>
+  </div>
+</div>
+{% endif %} {%endblock%}

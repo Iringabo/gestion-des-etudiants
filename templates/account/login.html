@@ -1,0 +1,23 @@
+{% extends "base.html" %} {% block content %}
+<div class="x">
+  <form method="post" class="formE">
+    {% csrf_token %}
+    <h1>Connection</h1>
+    <div class="content">
+      <div class="flex">
+        <label for="id_login">adresse email</label>
+          <input type="email" name="login" id="id_login">
+
+      </div>
+      <div class="flex">
+        <label for="id_password">Mot de passe</label>
+        <input type="password" name="password" id="id_password">
+      </div>
+    <input type="submit" class="send" value="Envoyer" />
+   <div> <a href="{% url 'account_signup' %}" class="btn-link">Je n'ai pas  encore de compte</a></div>
+  </form>
+  {% if form.errors %}
+  <p class="text-primary_red">{{ form.non_field_errors }}</p>
+  {% endif %}
+</div>
+{% endblock %}
